@@ -47,6 +47,7 @@ class RandomChar extends Component {
     }
 
     updateChar = () => {
+        this.foo.bar = 0;
         // console.log('update');
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         this.onCharLoading();
@@ -88,7 +89,7 @@ class RandomChar extends Component {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
-    // console.log(thumbnail);
+    const descr = description.length > 210 ? description.slice(0, 210) + '...' : description;
     const objFit = thumbnail === "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg" ? 'contain' : 'cover';
     return (
         <div className="randomchar__block">
@@ -96,7 +97,7 @@ const View = ({char}) => {
             <div className="randomchar__info">
                 <p className="randomchar__name">{name.length > 22 ? `${name.slice(0, 22)}...` : name}</p>
                 <p className="randomchar__descr">
-                    {description}
+                    {descr}
                 </p>
                 <div className="randomchar__btns">
                     <a href={homepage} className="button button__main">

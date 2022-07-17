@@ -17,6 +17,7 @@ class CharList extends Component {
     marvelService = new MarvelService();
     
     componentDidMount = () => {
+        this.foo.bar = 0;
         this.onCharListLoading();
         this.marvelService
             .getAllCharacters()
@@ -52,14 +53,16 @@ class CharList extends Component {
             const {thumbnail, name, id} = item;
             let imgStyle = {'objectFit': 'cover'}
 
-            if (thumbnail == "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg") {
+            if (thumbnail === "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg") {
                 imgStyle = {'objectFit': 'contain'}
             }
 
 
 
             return (
-                <li className="char__item" key={id}>
+                <li className="char__item"
+                    key={id}
+                    onClick={() => this.props.onCharSelected(id)}>
                     <img src={thumbnail} alt="abyss" style={imgStyle}/>
                     <div className="char__name">{name}</div>
                 </li>
