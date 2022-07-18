@@ -1,4 +1,5 @@
 import { Component } from 'react/cjs/react.production.min';
+import PropTypes from 'prop-types';
 
 import MarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/spinner';
@@ -37,7 +38,6 @@ class CharInfo extends Component {
             .getCharacter(charId)
             .then(this.onCharLoaded)
             .catch(this.onError);
-        this.foo.bar = 0;
     }
 
     onCharLoaded = (char) => {
@@ -104,7 +104,7 @@ const View = ({char}) => {
             </div>
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">
-                {comics.length > 0 ? null : 'There are no comics'};
+                {comics.length > 0 ? null : 'There are no comics'}
                 {
                     comics.map((item, i) => {
                         if (i > 9) return;
