@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import useMarvelService from '../../services/MarvelService';
 
@@ -7,7 +8,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './comicsList.scss';
 
-const ComicsList = (props) => {
+const ComicsList = () => {
     const [comics, setComics] = useState([]);
     const [newComicsLoading, setNewComicsLoading] = useState(false);
     const [offset, setOffset] = useState(0);
@@ -45,13 +46,12 @@ const ComicsList = (props) => {
                 <li 
                     key={i} 
                     className="comics__item"
-                    tabIndex={0}
-                    onClick={() => props.onComicSelected(id)}>
-                    <a href="#">
+                    tabIndex={0}>
+                    <Link to={`/comics/${id}`}>
                         <img src={thumbnail} alt="ultimate war" className="comics__item-img"/>
                         <div className="comics__item-name">{title}</div>
                         <div className="comics__item-price">{price}</div>
-                    </a>
+                    </Link>
                 </li>
             )
         })
