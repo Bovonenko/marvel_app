@@ -65,7 +65,6 @@ const CharList = (props) => {
     }
 
     function renderItems(arr) {
-        console.log('renderItems');
         const items = arr.map((item, i) => {
             const {thumbnail, name, id} = item;
             let imgStyle = {'objectFit': 'cover'}

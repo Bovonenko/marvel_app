@@ -15,7 +15,6 @@ const MainPage = () => {
     const onCharSelected = (id) => {
             setChar(id)
     }
-    console.log('mp');
     return (
         <>
             <Helmet>
@@ -33,7 +32,7 @@ const MainPage = () => {
                     <CharList onCharSelected={onCharSelected}/>
                 </ErrorBoundary>
                 
-                <div>
+                <div style={{'position': 'sticky', 'top': 0}}>
                     <ErrorBoundary>
                         <CharInfo charId={selectedChar}/>
                     </ErrorBoundary>
