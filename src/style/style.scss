@@ -10,10 +10,11 @@
 }
 
 body {
-    background: rgba(255, 185, 182, 1.0);
-    background: -webkit-linear-gradient(top left, rgba(255, 185, 182, 1.0), rgba(105, 16, 16, 1.0));
-    background: -moz-linear-gradient(top left, rgba(255, 185, 182, 1.0), rgba(105, 16, 16, 1.0));
-    background: linear-gradient(to bottom right, rgba(255, 185, 182, 1.0), rgba(105, 16, 16, 1.0));
+    /* Created with https://www.css-gradient.com */
+    background: rgba(199, 158, 152, 1.0);
+    background: -webkit-linear-gradient(top, rgba(199, 158, 152, 1.0), rgba(213, 140, 140, 1.0));
+    background: -moz-linear-gradient(top, rgba(199, 158, 152, 1.0), rgba(213, 140, 140, 1.0));
+    background: linear-gradient(to bottom, rgba(199, 158, 152, 1.0), rgba(213, 140, 140, 1.0));
     background-size: cover;
     min-height: 100vh;
 }
