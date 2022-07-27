@@ -8,13 +8,28 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './comicsList.scss';
 
+const setContent = (process, Component, newItemLoading) => {
+    switch (process) {
+        case 'waiting': 
+            return <Spinner/>;
+        case 'loading': 
+            return newItemLoading ? <Component/> : <Spinner/>;
+        case 'confirmed':
+            return <Component/>;
+        case 'error':
+            return <ErrorMessage/>;
+        default: 
+            throw new Error('Unexpected error');
+    }
+}
+
 const ComicsList = () => {
     const [comics, setComics] = useState([]);
     const [newComicsLoading, setNewComicsLoading] = useState(false);
     const [offset, setOffset] = useState(0);
     const [comicEnded, setComicEnded] = useState(false);
     
-    const {getAllComics, error, loading} = useMarvelService();
+    const {getAllComics, process, setProcess} = useMarvelService();
 
     useEffect(() => {
         updateComics(offset, true);
@@ -25,6 +40,7 @@ const ComicsList = () => {
 
         getAllComics(offset)
             .then(onComicsListLoaded)
+            .then(() => setProcess('confirmed'))
     }
 
     const onComicsListLoaded = (newComicsList) => {
@@ -62,17 +78,10 @@ const ComicsList = () => {
             </ul>
         )
     }
-
-    const items = renderItems(comics);
-
-    const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading && !newComicsLoading ? <Spinner/> : null;
-
+    
     return (
         <div className="comics__list">
-            {errorMessage}
-            {spinner}
-            {items}
+            {setContent(process, () => renderItems(comics), newComicsLoading)}
             <button  
                 disabled={newComicsLoading}
                 style={{'display': comicEnded ? 'none' : 'block'}}
